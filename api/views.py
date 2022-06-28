@@ -31,7 +31,7 @@ class StudyView(APIView):
             "urgency_level": study.urgency_level,
             "body_part": study.body_part,
             "description": study.description,
-            "type": study.type
+            "type": study.type,
         }
         return Response(study_result, status=status.HTTP_202_ACCEPTED)
 

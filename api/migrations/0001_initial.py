@@ -8,36 +8,42 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Study',
+            name="Study",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('urgency_level', models.TextField(blank=True)),
-                ('body_part', models.CharField(max_length=100, null=True)),
-                ('description', models.CharField(max_length=100)),
-                ('type', models.TextField()),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("urgency_level", models.TextField(blank=True)),
+                ("body_part", models.CharField(max_length=100, null=True)),
+                ("description", models.CharField(max_length=100)),
+                ("type", models.TextField()),
             ],
             options={
-                'db_table': 'studies',
+                "db_table": "studies",
             },
         ),
         migrations.CreateModel(
-            name='Patient',
+            name="Patient",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('first_name', models.TextField(null=True)),
-                ('last_name', models.TextField(null=True)),
-                ('birth_date', models.DateField(null=True)),
-                ('email', models.EmailField(max_length=254, null=True)),
-                ('national_id', models.TextField(null=True)),
-                ('study', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='api.study')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("first_name", models.TextField(null=True)),
+                ("last_name", models.TextField(null=True)),
+                ("birth_date", models.DateField(null=True)),
+                ("email", models.EmailField(max_length=254, null=True)),
+                ("national_id", models.TextField(null=True)),
+                (
+                    "study",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="api.study",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'patient',
+                "db_table": "patient",
             },
         ),
     ]

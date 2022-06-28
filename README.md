@@ -19,32 +19,6 @@ Please feel free to reach out and ask questions if you need any clarification.
 
 We are developing a simpler version of our core application. This application handles the information of our patients and the studies they have made.
 
-The following are examples of data to be used:
-
-Table for each patient that has been introduced in the system by a doctor.
-
-Patients (`/api/tests/data/patients.csv`):
-
-```
-first_name, last_name, birth_date, email, id
-Jose, Villalobos, 1955-04-10, pepe@ejemplo.com, 1
-Jessica, Ramirez, 1971-07-01, jessica@ejemplo.com, 2
-Diana Laura, Del Toro, 1988-08-29, diana@ejemplo.com, 3
-Jorge Alberto, Trevino, 1990-05-05, jorge@ejemplo.com, 4
-```
-
-Table for each study made to a patient.
-
-Studies (`/api/tests/data/studies.csv`):
-
-```
-urgency_level, body_part, description, type, patient_id
-HIGH, STOMACH, NO FINDINGS, XRAY, 1
-HIGH, NECK, NORMAL THYROID, XRAY, 1
-LOW, CHEST, UNUSUAL RATIO, XRAY, 2
-MID, BREASTS, HIGH DENSITY ON LEFT SIDE, MAMMOGRAM, 3
-```
-
 ## Requirements
 
 As we said before, it can take you a couple of hours or a day.
@@ -54,39 +28,58 @@ As we said before, it can take you a couple of hours or a day.
 -   Good use of git (commits, pull requests, branches)
 -   Use of [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages
 
-1. Implement the CRUD for Patients
-2. Implement the CRUD for Studies
-3. Implement the a listing view of Patients that displays their Studies
+1. Implement the CRUD for Patients (Needs testing)
+2. Implement the CRUD for Studies (Needs testing)
+3. Implement the listing view of Patients that displays their Studies (Needs testing)
 4. Fix Github Actions workflow for pipeline to work.
-5. Change from `pyenv` and `requirements.txt` to `pipenv` and `Pipfile`
-6. Add a `Dockerfile` and `docker-compose`
 7. Refactor the code
-8. Testing suite
+8. Ensure that all tests are passing.
 
 ## How to deliver
 
 1. Clone this repo and share the link with us at the time to deliver (DO NOT FORK)
-2. Please document the repo and your code (using [docstring](https://www.python.org/dev/peps/pep-0257/)
-3. On the README, explain your architecture, and development choices.
-4. On the README, write a summary of what else you could/would like to have done if you had more time.
+2. Add the next users to your private repo:
+   1. @IvanDiazNoriega, @daniel2101, @mauarcet, @antoniotorres
+3. Please document the repo and your code (using [docstring](https://www.python.org/dev/peps/pep-0257/)
+5. On the README, write a summary of what else you could/would like to have done if you had more time.
 
 ---
 
-## Virtual Enviorment Setup
+### Setup
 
-```bash
-python3 -m venv pyenv
-source pyenv/bin/activate
+```
+make build
+make up
 ```
 
-## Install Dependencies
+### Execute the tests
 
-```bash
-pip install -r requirements.txt
+```
+make test
 ```
 
----
+### Create new migrations
 
-## Architecture
+```
+make migrations
+```
+
+### Run migrations into db
+
+```
+make migrate
+```
+
+### Create new super-user.
+
+```
+make su
+```
+
+### Format the code
+
+```
+make format
+```
 
 ## TODOs

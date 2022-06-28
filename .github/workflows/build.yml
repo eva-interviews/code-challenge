@@ -1,13 +1,23 @@
 name: Build, Lint and Test
 
-on: [ push ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v2
-            -   name: Run & build Image
-                run: docker-compose up -d
-            -   name: Run Tests
-                run: docker exec core python manage.py test . --parallel
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run & build Image
+        run: make build && make up
+      - name: create .env
+        run: cp .env.dist .env
+      - name: check logs
+        run: docker-compose logs
+      - name: Run Tests
+        run: make test
+      - name: Run Lint
+        run: make lint

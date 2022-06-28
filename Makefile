@@ -7,34 +7,34 @@ init:
 	make migrate
 down:
 	docker-compose down --volumes --remove-orphans
-pull:
-	docker-compose pull
 build:
 	docker-compose build
-up: pull build
+up:
 	docker-compose up -d
-ps:
-	docker-compose ps
 migrations:
-	docker-compose run --rm core python manage.py makemigrations
+	@make up
+	docker exec -it core python manage.py makemigrations
 migrate:
-	make migrations
-	docker-compose run --rm core python manage.py migrate
+	@make up
+	docker exec -it core python manage.py migrate
 su:
-	docker-compose run --rm core python manage.py createsuperuser
+	@make up
+	docker exec -it core python manage.py createsuperuser
 test:
-	docker-compose run --rm core python manage.py test
-shell:
-	docker-compose run --rm core python manage.py shell
+	@make up
+	docker exec core python manage.py test .
+bash:
+	@make up
+	docker exec -it core python manage.py shell
 format:
-	docker-compose run --rm core black .
+	@make up
+	docker exec -it core black .
 lint:
-	docker-compose run --rm core black . --check
-setup:
-	docker-compose run --rm core pre-commit install
+	@make up
+	docker exec -it core black . --check
 prune:
 	make down
 	docker volume prune -f
 	docker system prune -f
-populatedb:
-	docker-compose run --rm core python manage.py populatedb
+logs:
+	docker-compose logs -f --tail 100
